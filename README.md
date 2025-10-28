@@ -29,7 +29,7 @@ It’s designed for easy lab operation: continuous monitoring in the background,
 ## 📦 Installation
 Clone this repo and install dependencies:
 ```bash
-git clone https://github.com/<your-user>/caen-dt5533e-monitor.git
+git clone https://github.com/BrunoGelli/caen-dt5533e-monitor.git
 cd caen-dt5533e-monitor
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -46,8 +46,8 @@ Run the shell, pointing it to your CAEN crate and InfluxDB host:
 
 ```bash
 python3 dt5533e_shell.py \
-  --host 192.168.197.102 --port 23 --channel 0 --period 1.0 \
-  --influx-host 192.168.197.46 --influx-port 8086 --influx-db annie \
+  --host XXX.XXX.XXX.XXX --port 23 --channel 0 --period 1.0 \
+  --influx-host XXX.XXX.XXX.XXX --influx-port 8086 --influx-db <dbName> \
   --measurement DT5533E --device-tag DT5533E
 ```
 
@@ -82,33 +82,12 @@ Each loop writes one point with all fields.
 
 ---
 
-## 📈 Grafana Quickstart
-
-Here are some example panels:
-
-- **Channel ON/OFF**:  
-  Stat panel → query `last("IS_ON")`.  
-  Value mapping: `0 → OFF (red)`, `1 → ON (green)`.
-
-- **Voltage & Current Time Series**:  
-  Plot `VMON` vs `VSET`, and `IMON` vs `ISET`.
-
-- **Status Flags**:  
-  Use **State timeline** or **Table** panel with `IS_TRIP`, `IS_OVC`, `IS_OVV`, etc.  
-
-- **Trip Detection**:  
-  Alert rule: `IS_TRIP == 1` → send notification.
-
----
-
 ## ⚡ Safety Notes
 - This script **does not enforce limits** — be careful when setting `VSET` or `ISET`.  
-- Always cross-check with the CAEN web GUI or GECO if available.  
-- Use `TRIP` and `ISET` appropriately to protect your detector and supply.
 
 ---
 
-## 🛠 Development
+## 🛠  Development
 - Contributions welcome (pull requests, issues).
 - Code is fully async (`asyncio`) and tested on Python 3.10+.
 - Planned extensions:
@@ -119,3 +98,6 @@ Here are some example panels:
 
 ## 📜 License
 MIT — free to use, modify, share.
+
+## Disclaimer 
+README wrote with ChatGPT
